@@ -8,7 +8,7 @@ Spring booter 2.x,+
 
 
 
-## 如何引用tlrobot-starters中的模块
+## 如何引用lx-starters中的模块
 
 目前只支持以maven坐标的形式导入, 以下以 tlrobot-common-starter 模块示例
 
