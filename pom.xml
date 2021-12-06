@@ -12,6 +12,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>common-starter</module>
+        <module>mapper-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>
