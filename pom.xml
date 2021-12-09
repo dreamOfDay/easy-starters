@@ -13,6 +13,7 @@
     <modules>
         <module>common-starter</module>
         <module>mapper-starter</module>
+        <module>feign-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>
