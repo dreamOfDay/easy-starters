@@ -17,6 +17,7 @@
         <module>mongo-starter</module>
         <module>nacos-starter</module>
         <module>redis-starter</module>
+        <module>mq-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>
