@@ -15,6 +15,7 @@
         <module>mapper-starter</module>
         <module>feign-starter</module>
         <module>mongo-starter</module>
+        <module>nacos-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>
