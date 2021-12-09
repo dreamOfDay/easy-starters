@@ -16,6 +16,7 @@
         <module>feign-starter</module>
         <module>mongo-starter</module>
         <module>nacos-starter</module>
+        <module>redis-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>
