@@ -10,7 +10,7 @@ Spring booter 2.x,+
 
 ## 如何引用lx-starters中的模块
 
-目前只支持以maven坐标的形式导入, 以下以 common-starter 模块示例
+目前只支持以maven坐标的形式导入, 以下以 common-starter 模块示例, 需要提前将本项目 install 到本地仓库。
 
 * 导入maven坐标即可
 
