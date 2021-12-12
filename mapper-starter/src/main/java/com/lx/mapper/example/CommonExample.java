@@ -46,9 +46,9 @@ public class CommonExample<T> extends Weekend<T> {
     public static <A> CommonExample<A> of(Class<A> clazz) {
         return new CommonExample<A>(clazz, Boolean.TRUE);
     }
-//	factory end ------------------------------
+    //	factory end ------------------------------
 
-    // 防止TlrobotExample被多线程共享
+    // 防止CommonExample被多线程共享
     private CommonExample<T> where() {
         if (this.criteria == null) {
             this.criteria = this.weekend.weekendCriteria();
@@ -65,7 +65,6 @@ public class CommonExample<T> extends Weekend<T> {
     public CommonExample<T> excludeProperties(Fn<T, Object> ...property){
         String[] properties = Arrays.asList(property).stream().map(Reflections::fnToFieldName).toArray(String[]::new);
         this.weekend.excludeProperties(properties);
-
         return this;
     }
 
