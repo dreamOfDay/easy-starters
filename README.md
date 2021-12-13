@@ -12,7 +12,7 @@ Spring booter 2.x,+
 
 目前只支持以maven坐标的形式导入, 以下以 common-starter 模块示例, 需要提前将本项目 install 到本地仓库。
 
-* 导入maven坐标即可
+* 导入 maven 坐标即可
 
 ```java
 <dependency>
@@ -22,7 +22,7 @@ Spring booter 2.x,+
 </dependency>
 ```
 
-然后你就可以直接在你的项目中直接使用common-starter中的内建功能了.
+然后你就可以直接在你的项目中直接使用 common-starter 中的内建功能了.
 
 ## lx-starters中的模块的作用
 
@@ -30,7 +30,7 @@ Spring booter 2.x,+
 
     * 提供了统一化的公共的返回前台对象以及其工具类
 
-    * 提供了统一化管理springIOC容器的工具类
+    * 提供了统一化管理 SpringIOC 容器的工具类
 
     * 提供了新的日期转换器
 
@@ -46,12 +46,12 @@ Spring booter 2.x,+
 
 * mapper-starter
 
-    * 内建tk.mybatis的基础通用类,直接继承即可使用tk.mybatis的方式来操作数据库
-    * 内建JdbcTemplateUtils来操作数据库
+    * 内建 tk.mybatis 的基础通用类,直接继承即可使用 tk.mybatis 的方式来操作数据库
+    * 内建 JdbcTemplateUtils 来操作数据库
 
 * mongo-starter
 
-    * 内建MongodbUtils来操作mongodb
+    * 内建 MongodbUtils 来操作 mongodb
 
 * mq-starter
 
@@ -59,11 +59,11 @@ Spring booter 2.x,+
 
 * nacos-starter
 
-    * 提供nacos的配置支持
+    * 提供 nacos 的配置支持
 
 * redis-starter
 
-    * 提供TlrobotRedisClient操作redis
+    * 提供 StringRedisTemplateUtils 操作 redis
 
 # 待补充
 
