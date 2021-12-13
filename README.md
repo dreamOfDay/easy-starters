@@ -1,4 +1,4 @@
-easy-starters是一个公共starter集合,旨在帮助java开发者快速构建springboot项目.
+easy-starters 是一个公共 starter 集合,旨在帮助 java 开发者快速构建 Springboot 与 Spring Cloud 项目.
 
 ## lx-starters的环境要求
 
