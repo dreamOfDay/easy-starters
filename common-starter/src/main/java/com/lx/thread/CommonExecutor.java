@@ -18,7 +18,7 @@ public class CommonExecutor {
             Executors.newScheduledThreadPool(ThreadUtils.getSuitableThreadCount(), new NameThreadFactory("com.lx.thread.CommonExecutor"));
 
 
-    public static void scheduleTlrobotTask(Runnable command, long initialDelay, long delay, TimeUnit unit) {
+    public static void scheduleCommonTask(Runnable command, long initialDelay, long delay, TimeUnit unit) {
         TLROBOT_SCHEDULED_EXECUTOR.scheduleWithFixedDelay(command, initialDelay, delay, unit);
     }
 
