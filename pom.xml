@@ -18,6 +18,7 @@
         <module>nacos-starter</module>
         <module>redis-starter</module>
         <module>mq-starter</module>
+        <module>fdfs-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>

@@ -64,6 +64,10 @@ Spring booter 2.x,+
 * redis-starter
 
     * 提供 StringRedisTemplateUtils 操作 redis
+  
+* fdfs-starter
+
+    * 提供 FdfsUtils 操作 fdfs
 
 # 待补充
 
