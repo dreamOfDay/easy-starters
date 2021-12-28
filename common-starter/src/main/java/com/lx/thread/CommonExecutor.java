@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class CommonExecutor {
 
-    private static final ScheduledExecutorService TLROBOT_SCHEDULED_EXECUTOR =
+    private static final ScheduledExecutorService Common_SCHEDULED_EXECUTOR =
             Executors.newScheduledThreadPool(ThreadUtils.getSuitableThreadCount(), new NameThreadFactory("com.lx.thread.CommonExecutor"));
 
 
     public static void scheduleCommonTask(Runnable command, long initialDelay, long delay, TimeUnit unit) {
-        TLROBOT_SCHEDULED_EXECUTOR.scheduleWithFixedDelay(command, initialDelay, delay, unit);
+        Common_SCHEDULED_EXECUTOR.scheduleWithFixedDelay(command, initialDelay, delay, unit);
     }
 
 }
