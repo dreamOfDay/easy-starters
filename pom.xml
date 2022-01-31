@@ -42,6 +42,7 @@
         <swagger.version>3.0.0</swagger.version>
         <pdfbox.version>2.0.24</pdfbox.version>
         <poi.version>5.0.0</poi.version>
+        <redisson.version>3.16.8</redisson.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +72,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-log4j</artifactId>
                 <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
 
             <dependency>
