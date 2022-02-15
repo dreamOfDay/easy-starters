@@ -1,3 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.lx.mapper.configuration.MapperAutoConfiguration
+com.lx.mapper.configuration.MapperAutoConfiguration,\
+com.lx.mapper.configuration.FrameworkAutoConfig
