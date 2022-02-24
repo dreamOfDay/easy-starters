@@ -1,11 +1,12 @@
 spring:
   cloud:
     nacos:
-      server-addr: nacos:8848
-      username: lx
-      password: lx123456
       config:
-        group: DEV
+        group: LX
+        server-addr: nacos:8848
+        namespace: namespace
         file-extension: yaml
       discovery:
-        group: DEV
+        group: LX
+        server-addr: nacos:8848
+        namespace: namespace
