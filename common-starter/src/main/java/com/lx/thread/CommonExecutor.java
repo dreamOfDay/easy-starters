@@ -18,8 +18,12 @@ public class CommonExecutor {
             Executors.newScheduledThreadPool(ThreadUtils.getSuitableThreadCount(), new NameThreadFactory("com.lx.thread.CommonExecutor"));
 
 
-    public static void scheduleCommonTask(Runnable command, long initialDelay, long delay, TimeUnit unit) {
+    public static void scheduleCommonTask(Runnable command, long delay, TimeUnit unit) {
+        Common_SCHEDULED_EXECUTOR.schedule(command, delay, unit);
+    }
+    public static void delayScheduleCommonTask(Runnable command, long initialDelay, long delay, TimeUnit unit) {
         Common_SCHEDULED_EXECUTOR.scheduleWithFixedDelay(command, initialDelay, delay, unit);
     }
+
 
 }
