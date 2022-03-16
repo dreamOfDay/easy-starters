@@ -12,7 +12,7 @@ public abstract class TreeFeature<T> {
     /**
      * 子节点list
      */
-    private transient List<T> childList;
+    private List<T> childList;
 
     /**
      * 获取当前节点的code
