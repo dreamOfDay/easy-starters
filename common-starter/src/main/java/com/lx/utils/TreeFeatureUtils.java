@@ -86,7 +86,7 @@ public class TreeFeatureUtils {
         ));
     }
 
-    public static Map<String, List<String>> getFullPaths(List<TreeFeature> fullList, List<String> codeList, String rootCode) {
+    public static Map<String, List<String>> getFullPaths(List<? extends TreeFeature> fullList, List<String> codeList, String rootCode) {
         return getFullPaths(fullList, codeList, rootCode, true);
     }
 
@@ -99,7 +99,7 @@ public class TreeFeatureUtils {
      * @param sortFlag  排序规则
      * @return key为节点id, value为路径的List, 返回结果根据key已去重
      */
-    public static Map<String, List<String>> getFullPaths(List<TreeFeature> fullList, List<String> codeList, String rootCode, boolean sortFlag) {
+    public static Map<String, List<String>> getFullPaths(List<? extends TreeFeature> fullList, List<String> codeList, String rootCode, boolean sortFlag) {
         if (CollectionUtils.isEmpty(fullList) || CollectionUtils.isEmpty(codeList)) {
             return new HashMap<>();
         }
