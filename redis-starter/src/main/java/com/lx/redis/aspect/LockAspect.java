@@ -45,14 +45,14 @@ public class LockAspect {
             Object arg = args[i];
 
             LockKey lockKey = parameter.getAnnotation(LockKey.class);
-            String field =lockKey.field();
-            if(StringUtils.isEmpty(field)){
-                field = lockKey.value();
-            }
             if(lockKey !=null ){
                 if(BeanUtils.isSimpleValueType(parameter.getType())){
                     builder.append( ":" + arg.toString());
                     continue;
+                }
+                String field =lockKey.field();
+                if(StringUtils.isEmpty(field)){
+                    field = lockKey.value();
                 }
                 Field declaredField = parameter.getType().getDeclaredField(field);
                 declaredField.setAccessible(true);

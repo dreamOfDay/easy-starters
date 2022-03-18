@@ -51,16 +51,15 @@ public class CacheAspect {
             Object arg = args[i];
 
             CacheKey cacheKey = parameter.getAnnotation(CacheKey.class);
-
-            String field =cacheKey.field();
-            if(StringUtils.isEmpty(field)){
-                field = cacheKey.value();
-            }
             if(cacheKey !=null ){
                 // 如果是简单数据类型则直接获取值
                 if(BeanUtils.isSimpleValueType(parameter.getType())){
                     builder.append( ":" + arg.toString());
                     continue;
+                }
+                String field =cacheKey.field();
+                if(StringUtils.isEmpty(field)){
+                    field = cacheKey.value();
                 }
                 // 非简单类型则需要根据@CacheKey获取对象里面的field属性获取值
                 Field declaredField = parameter.getType().getDeclaredField(field);
@@ -107,15 +106,15 @@ public class CacheAspect {
             Object arg = args[i];
 
             CacheKey cacheKey = parameter.getAnnotation(CacheKey.class);
-            String field =cacheKey.field();
-            if(StringUtils.isEmpty(field)){
-                field = cacheKey.value();
-            }
             if(cacheKey !=null ){
                 // 如果是简单数据类型则直接获取值
                 if(BeanUtils.isSimpleValueType(parameter.getType())){
                     builder.append( ":" + arg.toString());
                     continue;
+                }
+                String field =cacheKey.field();
+                if(StringUtils.isEmpty(field)){
+                    field = cacheKey.value();
                 }
                 Field declaredField = parameter.getType().getDeclaredField(field);
                 declaredField.setAccessible(true);
