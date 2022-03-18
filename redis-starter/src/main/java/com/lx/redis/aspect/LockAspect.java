@@ -1,6 +1,7 @@
 package com.lx.redis.aspect;
 
 import com.lx.redis.annotation.CacheKey;
+import com.lx.redis.annotation.LockKey;
 import com.lx.redis.annotation.RedisLock;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -41,18 +42,18 @@ public class LockAspect {
         Object[] args = joinPoint.getArgs();
         for(int i=0; i<args.length; i++){
             Parameter parameter = parameters[i];
-            CacheKey cacheKey = parameter.getAnnotation(CacheKey.class);
             Object arg = args[i];
-            if(BeanUtils.isSimpleValueType(parameter.getType())){
-                builder.append( ":" + args.toString());
-                continue;
-            }
-            String field =cacheKey.field();
-            if(StringUtils.isEmpty(field)){
-                field = cacheKey.value();
-            }
-            if(cacheKey !=null ){
 
+            LockKey lockKey = parameter.getAnnotation(LockKey.class);
+            if(lockKey !=null ){
+                if(BeanUtils.isSimpleValueType(parameter.getType())){
+                    builder.append( ":" + arg.toString());
+                    continue;
+                }
+                String field =lockKey.field();
+                if(StringUtils.isEmpty(field)){
+                    field = lockKey.value();
+                }
                 Field declaredField = parameter.getType().getDeclaredField(field);
                 declaredField.setAccessible(true);
                 Object fieldKey = declaredField.get(arg);
