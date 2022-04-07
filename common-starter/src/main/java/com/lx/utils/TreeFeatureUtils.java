@@ -133,4 +133,25 @@ public class TreeFeatureUtils {
             }
         });
     }
+
+    /**
+     * 查找一颗树中给定节点构成的子树
+     * @param treeFeatureList 树形list
+     * @param aimCode 目标节点
+     * @param <T> TreeFeature的子类
+     * @return 子树
+     */
+    public static <T extends TreeFeature> T getChildTree(List<T> treeFeatureList, String aimCode){
+        for (TreeFeature treeFeature : treeFeatureList) {
+            if (treeFeature.getCurrentCode().equals(aimCode)){
+                return (T) treeFeature;
+            }
+            if (CollectionUtils.isEmpty(treeFeature.getChildList())){
+                continue;
+            }
+            getChildTree(treeFeature.getChildList(), aimCode);
+        }
+        return null;
+    }
+
 }
