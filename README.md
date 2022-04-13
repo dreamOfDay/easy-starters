@@ -24,7 +24,7 @@ Spring booter 2.x,+
 
 然后你就可以直接在你的项目中直接使用 common-starter 中的内建功能了.
 
-## lx-starters中的模块的作用
+## lx-starters中的各模块的作用
 
 * common-starter
 
@@ -69,13 +69,15 @@ Spring booter 2.x,+
 
     * 提供 FdfsUtils 操作 fdfs
 
+* kafka-starter
+
+  * 改写了默认的存储以及消息转换方式并提供了扩展方式
+
 # 待补充
 
 如果你有兴趣,可以参与补充一些starters,目前我们构建方式[采取springboot的标准构建starter的方式](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.developing-auto-configuration.custom-starter)
 
 * es-starter
-
-* kafka-starter
 
 * sentinel-starter
 

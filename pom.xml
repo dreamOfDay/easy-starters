@@ -19,6 +19,7 @@
         <module>redis-starter</module>
         <module>mq-starter</module>
         <module>fdfs-starter</module>
+        <module>kafka-starter</module>
     </modules>
 
     <groupId>com.lx</groupId>
