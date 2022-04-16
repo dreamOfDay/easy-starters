@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONValidator;
 import org.apache.commons.logging.LogFactory;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.log.LogAccessor;
 
 /**
@@ -11,11 +12,11 @@ import org.springframework.core.log.LogAccessor;
  * @Date: 2022/4/13
  * @Description:
  **/
-public class DefaultConverter implements MessageConverter.Converter{
+public class DefaultJsonConverter implements Converter<ConsumerRecord, Object> {
     protected final LogAccessor logger = new LogAccessor(LogFactory.getLog(getClass()));
 
     @Override
-    public Object converter(ConsumerRecord<?, ?> record) {
+    public Object convert(ConsumerRecord record) {
         String value = (String)record.value();
         // 校验json字符串类型并转换
         JSONValidator.Type jsonType = JSONValidator.from(value).getType();

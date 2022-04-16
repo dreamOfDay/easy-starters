@@ -2,9 +2,11 @@ package com.lx.kafka.converter;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.kafka.support.KafkaNull;
 import org.springframework.kafka.support.converter.MessagingMessageConverter;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Type;
 
 /**
@@ -16,11 +18,12 @@ import java.lang.reflect.Type;
 public class MessageConverter extends MessagingMessageConverter {
 
     private Converter converter;
-    
-    public MessageConverter() {
-        this.converter = new DefaultConverter();
-    }
 
+    @PostConstruct
+    public void init(){
+        this.converter = new DefaultJsonConverter();
+    }
+    
     public Converter getConverter() {
         return converter;
     }
@@ -31,12 +34,7 @@ public class MessageConverter extends MessagingMessageConverter {
 
     @Override
     protected Object extractAndConvertValue(ConsumerRecord<?, ?> record, Type type) {
-        return record.value() == null ? KafkaNull.INSTANCE : this.converter.converter(record);
-    }
-
-    @FunctionalInterface
-    public interface Converter{
-        Object converter(ConsumerRecord<?, ?> record);
+        return record.value() == null ? KafkaNull.INSTANCE : this.converter.convert(record);
     }
 
     public static class TypeNotSuppostException extends RuntimeException{
