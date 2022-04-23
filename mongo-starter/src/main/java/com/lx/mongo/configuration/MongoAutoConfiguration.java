@@ -1,4 +1,4 @@
-package com.lx.mongo;
+package com.lx.mongo.configuration;
 
 import org.springframework.context.annotation.Configuration;
 
