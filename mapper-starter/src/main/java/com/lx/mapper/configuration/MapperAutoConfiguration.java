@@ -1,7 +1,5 @@
 package com.lx.mapper.configuration;
 
-import com.lx.components.SpringContextUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,9 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MapperAutoConfiguration {
 
-    @Bean
-    public SpringContextUtils springContextUtil() {
-        return new SpringContextUtils();
-    }
+
 
 }
