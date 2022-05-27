@@ -1,6 +1,6 @@
 easy-starters 是一个公共 starter 集合,旨在帮助 java 开发者快速构建 Springboot 与 Spring Cloud 项目.
 
-## lx-starters的环境要求
+## easy-starters的环境要求
 
 JDK requirement: JDK 1.8+
 
@@ -8,7 +8,7 @@ Spring booter 2.x,+
 
 
 
-## 如何引用lx-starters中的模块
+## 如何引用easy-starters中的模块
 
 目前只支持以maven坐标的形式导入, 以下以 common-starter 模块示例, 需要提前将本项目 install 到本地仓库。
 
@@ -16,7 +16,7 @@ Spring booter 2.x,+
 
 ```java
 <dependency>
-    <groupId>com.lx</groupId>
+    <groupId>com.easy</groupId>
     <artifactId>common-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
@@ -24,7 +24,7 @@ Spring booter 2.x,+
 
 然后你就可以直接在你的项目中直接使用 common-starter 中的内建功能了.
 
-## lx-starters中的各模块的作用
+## easy-starters中的各模块的作用
 
 * common-starter
 
