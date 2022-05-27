@@ -16,7 +16,7 @@ Spring booter 2.x,+
 
 ```java
 <dependency>
-    <groupId>com.easy</groupId>
+    <groupId>com.lx</groupId>
     <artifactId>common-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
