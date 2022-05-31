@@ -2,10 +2,9 @@ package com.lx.utils;
 
 import org.springframework.util.AntPathMatcher;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -42,6 +41,29 @@ public class Ipv4Utils {
         return result;
     }
 
+
+    /**
+     * 获取所有的Ip
+     * @return
+     */
+    public static List<String> getAllIps(){
+        List<String> localIps;
+        try {
+            // 获取全部ip
+            localIps = new ArrayList<>();
+            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (networkInterfaces.hasMoreElements()){
+                NetworkInterface networkInterface = networkInterfaces.nextElement();
+                Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
+                while (inetAddresses.hasMoreElements()){
+                    localIps.add(inetAddresses.nextElement().getHostAddress());
+                }
+            }
+        }catch (Exception e) {
+            localIps = new ArrayList<>();
+        }
+        return localIps;
+    }
 
 
     public static enum Ipv4Group{
