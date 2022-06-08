@@ -23,7 +23,9 @@ public class LxKafkaAutoConfiguration {
     public ProducerFactory<?, ?> defaultKafkaProducerFactory(ProducerFactory producerFactory){
         // reason whey can cast producerFactory to DefaultKafkaProducerFactory is this.autoConfiguration happens after KafkaAutoConfiguration
         // if you want to enable your own kafka config, please don't use this dependency
-        ((DefaultKafkaProducerFactory) producerFactory).setValueSerializer(new JsonSerializer());
+        if (producerFactory instanceof DefaultKafkaProducerFactory){
+            ((DefaultKafkaProducerFactory) producerFactory).setValueSerializer(new JsonSerializer());
+        }
         return producerFactory;
     }
 

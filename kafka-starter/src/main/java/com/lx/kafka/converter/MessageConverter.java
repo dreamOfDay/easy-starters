@@ -37,10 +37,10 @@ public class MessageConverter extends MessagingMessageConverter {
         return record.value() == null ? KafkaNull.INSTANCE : this.converter.convert(record);
     }
 
-    public static class TypeNotSuppostException extends RuntimeException{
+    public static class TypeNotSupportException extends RuntimeException{
         private static final long serialVersionUID = -5101214195716534496L;
 
-        public TypeNotSuppostException(String message) {
+        public TypeNotSupportException(String message) {
             super(message);
         }
     }

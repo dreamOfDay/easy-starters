@@ -29,7 +29,7 @@ public class DefaultJsonConverter implements Converter<ConsumerRecord, Object> {
                 return JSONObject.parseArray(value);
             default:
                 logger.error(String.format("record.value format error : %s", value));
-                throw new MessageConverter.TypeNotSuppostException(String.format("record.value format error : %s", value));
+                throw new MessageConverter.TypeNotSupportException(String.format("record.value format error : %s", value));
         }
     }
 }
