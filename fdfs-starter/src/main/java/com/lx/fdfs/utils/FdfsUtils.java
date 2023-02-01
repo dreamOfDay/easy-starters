@@ -84,4 +84,12 @@ public class FdfsUtils {
         return dfsClient().downloadFile(groupName, realPath, downloadCallback);
     }
 
+    /**
+     * 删除 fastdfs 上的文件
+     * @param remoteUrl fastdfs 上的路径
+     */
+    public static void deleteFdfsFile(String remoteUrl){
+        dfsClient().deleteFile(remoteUrl);
+    }
+
 }
