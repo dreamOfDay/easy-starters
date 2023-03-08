@@ -3,8 +3,11 @@ package com.lx.thread;
 import com.lx.thread.factory.NameThreadFactory;
 import com.lx.utils.ThreadUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @Author: yuj
@@ -83,6 +86,53 @@ public class CommonExecutor {
                     return true;
                 }, executor
         ).exceptionally(rollbackFunc);
+    }
+
+    /**
+     * 执行多个任务并返回结果集
+     *
+     * @param taskParam 任务参数
+     * @param func      任务本身
+     * @param <R>       返回值泛型
+     * @param <T>       任务入参泛型
+     * @return
+     */
+    public static <R, T> List<R> runTasksAndGetResults(List<T> taskParam, Function<T, R> func) {
+        return runTasksAndGetResults(taskParam, func, COMMON_SCHEDULED_EXECUTOR);
+    }
+
+    /**
+     * 执行多个任务并返回结果集
+     *
+     * @param taskParam       任务参数
+     * @param func            任务本身
+     * @param executorService 线程池
+     * @param <R>             返回值泛型
+     * @param <T>             任务入参泛型
+     * @return
+     */
+    public static <R, T> List<R> runTasksAndGetResults(List<T> taskParam, Function<T, R> func, ExecutorService executorService) {
+
+        List<CompletableFuture<R>> resultFuture = taskParam.stream()
+                .map(task -> CompletableFuture.supplyAsync(() -> func.apply(task), executorService) )
+                .collect(Collectors.toList());
+
+        @SuppressWarnings("unchecked")
+        CompletableFuture<R>[] futureArray = resultFuture.stream().toArray(CompletableFuture[]::new);
+
+        CompletableFuture<Void> allFuture = CompletableFuture.allOf(futureArray);
+
+        while (!allFuture.isDone()) {}
+
+       return resultFuture.stream().map(data -> {
+           try {
+               return data.get();
+           } catch (InterruptedException | ExecutionException e) {
+               e.printStackTrace();
+           }
+           return null;
+       }).collect(Collectors.toList());
+
     }
 
 
