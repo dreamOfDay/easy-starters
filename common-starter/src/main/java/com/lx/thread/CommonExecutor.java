@@ -4,6 +4,7 @@ import com.lx.thread.factory.NameThreadFactory;
 import com.lx.utils.ThreadUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Function;
@@ -112,27 +113,22 @@ public class CommonExecutor {
      * @return
      */
     public static <R, T> List<R> runTasksAndGetResults(List<T> taskParam, Function<T, R> func, ExecutorService executorService) {
-
-        List<CompletableFuture<R>> resultFuture = taskParam.stream()
-                .map(task -> CompletableFuture.supplyAsync(() -> func.apply(task), executorService) )
-                .collect(Collectors.toList());
-
-        @SuppressWarnings("unchecked")
-        CompletableFuture<R>[] futureArray = resultFuture.stream().toArray(CompletableFuture[]::new);
-
-        CompletableFuture<Void> allFuture = CompletableFuture.allOf(futureArray);
-
-        while (!allFuture.isDone()) {}
-
-       return resultFuture.stream().map(data -> {
-           try {
-               return data.get();
-           } catch (InterruptedException | ExecutionException e) {
-               e.printStackTrace();
-           }
-           return null;
-       }).collect(Collectors.toList());
-
+        return taskParam.stream()
+                .map(task -> CompletableFuture.supplyAsync(() -> func.apply(task), executorService))
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(), resultFutureList -> {
+                            CompletableFuture<Void> allFuture = CompletableFuture.allOf(resultFutureList.toArray(new CompletableFuture[0]));
+                            while (!allFuture.isDone()) { }
+                            return resultFutureList.stream().map(data -> {
+                                try {
+                                    return data.get();
+                                } catch (InterruptedException | ExecutionException e) {
+                                    e.printStackTrace();
+                                }
+                                return null;
+                            }).collect(Collectors.toList());
+                        }
+                ));
     }
 
 
