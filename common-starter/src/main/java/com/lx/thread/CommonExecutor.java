@@ -3,8 +3,6 @@ package com.lx.thread;
 import com.lx.thread.factory.NameThreadFactory;
 import com.lx.utils.ThreadUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Function;
@@ -113,20 +111,25 @@ public class CommonExecutor {
      * @return
      */
     public static <R, T> List<R> runTasksAndGetResults(List<T> taskParam, Function<T, R> func, ExecutorService executorService) {
+        // 转化结果的func
+        Function<CompletableFuture<R>,R> futureTFunction = data -> {
+            try {
+                return data.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            return null;
+        };
         return taskParam.stream()
                 .map(task -> CompletableFuture.supplyAsync(() -> func.apply(task), executorService))
                 .collect(Collectors.collectingAndThen(
                         Collectors.toList(), resultFutureList -> {
                             CompletableFuture<Void> allFuture = CompletableFuture.allOf(resultFutureList.toArray(new CompletableFuture[0]));
+                            // 等待所有任务完成
                             while (!allFuture.isDone()) { }
-                            return resultFutureList.stream().map(data -> {
-                                try {
-                                    return data.get();
-                                } catch (InterruptedException | ExecutionException e) {
-                                    e.printStackTrace();
-                                }
-                                return null;
-                            }).collect(Collectors.toList());
+                            return resultFutureList.stream()
+                                    .map(futureTFunction)
+                                    .collect(Collectors.toList());
                         }
                 ));
     }
